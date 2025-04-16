@@ -1,0 +1,22 @@
+{
+  "name": "devtree",
+  "version": "1.0.0",
+  "description": "Primer proyecto cn Express y TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santiago1708/DevTree.git"
+  },
+  "author": "Dev Santiago Vela",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santiago1708/DevTree/issues"
+  },
+  "homepage": "https://github.com/santiago1708/DevTree#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
