@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "lib": ["ESNext"], //indicas la biblioteca y caracteristicas disponibles de Js disponible en el codigo de TS
+        "target": "ESNext", //version para compilar el codigo de TS a JS
+        "moduleResolution": "nodenext", //en ts especifica como se resuelven los modulos, en este caso se usa el sistema de modulos de node
+        "module": "NodeNext",
+        "strict": false, //activa todas las opciones de verificacion estricta 
+        "sourceMap": true, //genera un archivo .map para cada archivo .js generado, lo que permite depurar el codigo original de TS en lugar del codigo compilado de JS
+        "esModuleInterop": true, //permite la interoperabilidad entre los modulos de ES y CommonJS
+        "declaration": true, //genera archivos de definicion .d.ts para cada archivo .ts generado, lo que permite la importacion de modulos de forma mas sencilla
+        
+    }, 
+    "include": ["src/**/*.ts"], //indica los archivos que se deben incluir en la compilacion
+} 

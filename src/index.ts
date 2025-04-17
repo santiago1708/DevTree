@@ -1,4 +1,4 @@
-const express = require('express')
+import express from 'express' //importando express
 
 const app = express() //instancia del servidor
 
@@ -7,6 +7,8 @@ app.get('/', (req, res) => { //Req = Enviando mucha información al servidor, Re
     res.send('Hola mundo')
 })
 
-app.listen(3000, () => {
-    console.log('Server on port 3000')
+const port = process.env.port || 3000 //puerto del servidor
+
+app.listen(port, () => {
+    console.log('Server on port:', port)
 })
