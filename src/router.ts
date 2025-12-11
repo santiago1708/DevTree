@@ -36,6 +36,6 @@ router.post('/auth/login',
     login
 )
 
-router.get('/user', authenticate,  getUser)
+router.get('/user', authenticate, getUser)
 
 export default router; //Exportando el router
