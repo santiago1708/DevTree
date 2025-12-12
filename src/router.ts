@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
-import { createAccount, getUser, login } from './handlers';
+import { createAccount, getUser, login, updateProfile } from './handlers';
 import { handleInpoutErrors } from './middleware/validation';
 import { authenticate } from './middleware/Auth';
 
@@ -37,5 +37,15 @@ router.post('/auth/login',
 )
 
 router.get('/user', authenticate, getUser)
+router.patch('/user',
+    body('handle')
+        .notEmpty()
+        .withMessage('El nombre de usuario es obligatorio'),
+    body('description')
+        .notEmpty()
+        .withMessage('La descripción no puede ir vacio'),
+    handleInpoutErrors,
+    authenticate,
+    updateProfile)
 
 export default router; //Exportando el router
