@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import slug from 'slug';
 import formidable from 'formidable'
-import { v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 import User from "../models/User";
 import { checkPassword, hashPassword } from "../utils/auth";
 import { generateJWT } from "../utils/jwt";
@@ -104,13 +104,13 @@ export const uploadImage = async (req: Request, res: Response) => {
 
         form.parse(req, (error, fields, files) => {
 
-            cloudinary.uploader.upload(files.file[0].filepath, {public_id : uuid()}, async function (error, result) {
+            cloudinary.uploader.upload(files.file[0].filepath, { public_id: uuid() }, async function (error, result) {
                 if (error) {
                     const error = new Error('Hubo un error en la subida de la imagen')
                     res.status(500).json({ error: error.message });
                     return
                 }
-                if(result){
+                if (result) {
                     req.user.image = result.secure_url //Agregar URL a la base de datos
                     await req.user.save(); // Guarda el usuario con la nueva imagen
                     res.json({ message: 'Imagen subida correctamente', image: result.secure_url });
@@ -124,4 +124,22 @@ export const uploadImage = async (req: Request, res: Response) => {
         return
     }
 
+}
+
+export const getUserByHandle = async (req: Request, res: Response) => {
+    try {
+        const { handle } = req.params
+        const user = await User.findOne({ handle }).select('-password -_id -__v -email ')
+
+        if (!user) {
+            const error = new Error('Usuario no encontrado')
+            res.status(404).json({ error: error.message })
+            return
+        }
+        res.json(user)
+    } catch (e) {
+        const error = new Error('Hubo un error')
+        res.status(500).json({ error: error.message });
+        return
+    }
 }
